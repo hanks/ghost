@@ -18,6 +18,12 @@ RUN \
   sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
   useradd ghost --home /ghost
 
+# Install an MTA
+RUN \
+  apt-get update && \
+  apt-get install -y sendmail && \
+  apt-get autoremove
+
 # Add files.
 ADD start.bash /ghost-start
 
